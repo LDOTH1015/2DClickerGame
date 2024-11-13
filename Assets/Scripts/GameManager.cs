@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI score;
+    [SerializeField] private TextMeshProUGUI score;
     public static GameManager instance;
     public static GameManager Instance
     {
@@ -50,5 +50,6 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         gameStatuse.SetScore(gameStatuse.GetClickPower());
+        gameStatuse.SetGold(gameStatuse.GetAttackGold());
     }
 }

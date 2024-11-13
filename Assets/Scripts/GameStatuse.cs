@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class GameStatuse : MonoBehaviour
 {
-    private int clickPower = 1;
-    private int gameLevel = 1;
-    private int attackGold = 10;
-    private int gold = 0;
-    private int score = 0;
-    public int GetClickPower()
+    private float clickPower = 1;
+    private float gameLevel = 1;
+    private float attackGold = 1;
+    private float upgradePrice = 100;
+    private float gold = 0;
+    private float score = 0;
+    public float GetClickPower()
     {
         return clickPower;
     }
 
-    public void SetClickPower(int data)
+    public void UpClickPower()
     {
-        clickPower += data;
+        clickPower *= 2;
     }
 
-    public int GetGameLevel()
+    public float GetGameLevel()
     {
         return gameLevel;
     }
@@ -29,32 +30,32 @@ public class GameStatuse : MonoBehaviour
         gameLevel++;
     }
 
-    public int GetAttackGold()
+    public float GetAttackGold()
     {
         return attackGold;
     }
 
-    public void SetAttackGold(int data)
+    public void SetAttackGold()
     {
-        attackGold += data;
+        attackGold *= 2f;
     }
 
-    public int GetGold()
+    public float GetGold()
     {
         return gold;
     }
 
-    public void SetGold(int data)
+    public void SetGold(float data)
     {
         gold += data;
     }
 
-    public int GetScore()
+    public float GetScore()
     {
         return score;
     }
 
-    public void SetScore(int data)
+    public void SetScore(float data)
     {
         score += data;
     }
@@ -62,5 +63,15 @@ public class GameStatuse : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.GameStatuse = this;
+    }
+
+    public float GetUpgradePrice()
+    {
+        return upgradePrice;
+    }
+
+    public void UpUpgradePrice()
+    {
+        upgradePrice *= 2.5f;
     }
 }
