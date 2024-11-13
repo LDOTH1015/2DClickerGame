@@ -52,4 +52,6 @@ public class GameManager : MonoBehaviour
         gameStatuse.SetScore(gameStatuse.GetClickPower());
         gameStatuse.SetGold(gameStatuse.GetAttackGold());
     }
+
+
 }

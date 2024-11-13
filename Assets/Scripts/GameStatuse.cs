@@ -35,7 +35,7 @@ public class GameStatuse : MonoBehaviour
         return attackGold;
     }
 
-    public void SetAttackGold()
+    public void UpAttackGold()
     {
         attackGold *= 2f;
     }
@@ -47,7 +47,7 @@ public class GameStatuse : MonoBehaviour
 
     public void SetGold(float data)
     {
-        gold += data;
+        gold += Mathf.FloorToInt(data);
     }
 
     public float GetScore()
@@ -67,7 +67,7 @@ public class GameStatuse : MonoBehaviour
 
     public float GetUpgradePrice()
     {
-        return upgradePrice;
+        return Mathf.CeilToInt(upgradePrice);
     }
 
     public void UpUpgradePrice()

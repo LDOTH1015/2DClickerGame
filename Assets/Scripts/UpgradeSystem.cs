@@ -24,4 +24,12 @@ public class UpgradeSystem : MonoBehaviour
     {
         upgradeUI.SetActive(false);
     }
+
+    public void BuyUpgrade()
+    {
+        GameManager.Instance.GameStatuse.SetGold(-GameManager.Instance.GameStatuse.GetUpgradePrice());
+        GameManager.Instance.GameStatuse.UpUpgradePrice();
+        GameManager.Instance.GameStatuse.UpClickPower();
+        GameManager.Instance.GameStatuse.UpAttackGold();
+    }
 }
