@@ -5,6 +5,19 @@ using UnityEngine;
 public class ClickButton : MonoBehaviour
 {
     public ParticleSystem effectParticle;
+    public AudioClip crackSound;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = crackSound;
+    }
     void OnMouseDown()
     {
         GameManager.Instance.AddScore();
@@ -17,6 +30,10 @@ public class ClickButton : MonoBehaviour
             ParticleSystem particle = Instantiate(effectParticle, worldPosition, Quaternion.identity);
 
             Destroy(particle.gameObject, 0.5f);
+        }
+        if (audioSource != null && crackSound != null)
+        {
+            audioSource.Play();
         }
     }
 }
