@@ -5,6 +5,7 @@ using UnityEngine;
 public class AutoButton : MonoBehaviour
 {
     private bool isClick = false;
+    private Vector2 clickPosition = new Vector2(0, 0);
     private Coroutine coroutine;
     void Update()
     {
@@ -21,7 +22,12 @@ public class AutoButton : MonoBehaviour
 
     private IEnumerator AutoClick()
     {
-        GameManager.Instance.AddScore();
+        RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            hit.collider.gameObject.SendMessage("OnAutoClick", clickPosition, SendMessageOptions.DontRequireReceiver);
+        }
         yield return new WaitForSeconds(1);
         coroutine = null;
     }

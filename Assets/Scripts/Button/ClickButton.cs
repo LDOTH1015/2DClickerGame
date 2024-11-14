@@ -18,19 +18,31 @@ public class ClickButton : MonoBehaviour
         }
         audioSource.clip = crackSound;
     }
-    void OnMouseDown()
+
+    private void OnMouseDown()
     {
         GameManager.Instance.AddScore();
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Camera.main.nearClipPlane;
+        Vector2 clickPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        TriggerEffect(clickPosition);
+    }
+
+    private void OnAutoClick(Vector2 clickPosition)
+    {
+        GameManager.Instance.AddScore();
+        TriggerEffect(clickPosition);
+    }
+
+    private void TriggerEffect(Vector2 clickPosition)
+    {
         if (effectParticle != null)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = Camera.main.nearClipPlane;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-            ParticleSystem particle = Instantiate(effectParticle, worldPosition, Quaternion.identity);
-
+            Vector3 particlePosition = new Vector3(clickPosition.x, clickPosition.y, 0);
+            ParticleSystem particle = Instantiate(effectParticle, particlePosition, Quaternion.identity);
             Destroy(particle.gameObject, 0.5f);
         }
+
         if (audioSource != null && crackSound != null)
         {
             audioSource.Play();
